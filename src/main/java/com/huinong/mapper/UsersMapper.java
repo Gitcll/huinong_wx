@@ -1,7 +1,9 @@
 package com.huinong.mapper;
 
 import com.huinong.pojo.Users;
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
 public interface UsersMapper {
     int deleteByPrimaryKey(String username);
 

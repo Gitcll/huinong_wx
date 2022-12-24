@@ -1,4 +1,4 @@
-package com.huinong.Controller;
+package com.huinong.controller;
 
 import org.springframework.web.bind.annotation.*;
 

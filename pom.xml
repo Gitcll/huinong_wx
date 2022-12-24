@@ -37,6 +37,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.34</version>
         </dependency>
         <!--mysql依赖 end-->
 
@@ -62,6 +63,14 @@
             <version>1.3.6</version>
         </dependency>
         <!--mybatis自动生成工具 end-->
+
+        <!--apache工具包 start-->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.9</version>
+        </dependency>
+        <!--apache工具包 end-->
     </dependencies>
 
     <build>

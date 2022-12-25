@@ -14,9 +14,9 @@ public class HallMeunServiceImpl implements HallMeunService {
     private HallMeunMapper hallMeunMapper;
 
     @Override
-    public List<HallMeun> selectByDeleteFlgKey(Integer deleteflg) {
+    public List<HallMeun> selectByDeleteFlgKey(Integer deleteflg, String meunurl) {
         if(deleteflg != null){
-            List<HallMeun> hallMeunList = hallMeunMapper.selectByDeleteFlgKey(deleteflg);
+            List<HallMeun> hallMeunList = hallMeunMapper.selectByDeleteFlgKey(deleteflg, meunurl);
             return hallMeunList;
         }
         return null;

@@ -6,5 +6,5 @@ import com.huinong.pojo.Users;
 import java.util.List;
 
 public interface HallMeunService {
-    List<HallMeun> selectByDeleteFlgKey(Integer deleteflg);
+    List<HallMeun> selectByDeleteFlgKey(Integer deleteflg, String meunurl);
 }

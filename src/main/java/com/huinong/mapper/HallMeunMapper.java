@@ -2,6 +2,7 @@ package com.huinong.mapper;
 
 import com.huinong.pojo.HallMeun;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ public interface HallMeunMapper {
 
     int insertSelective(HallMeun record);
 
-    List<HallMeun> selectByDeleteFlgKey(Integer deleteflg);
+    List<HallMeun> selectByDeleteFlgKey(@Param("deleteflg") Integer deleteflg, @Param("meunurl") String meunurl);
 
     HallMeun selectByPrimaryKey(Integer no);
 

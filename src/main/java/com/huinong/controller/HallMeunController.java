@@ -1,5 +1,6 @@
 package com.huinong.controller;
 
+import com.huinong.common.Constant;
 import com.huinong.pojo.HallMeun;
 import com.huinong.service.HallMeunService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,28 @@ public class HallMeunController {
 
     @GetMapping("meun")
     public List<HallMeun> meun(ModelAndView modelAndView){
-        List<HallMeun> hallMeunList = hallMeunService.selectByDeleteFlgKey(1);
+        List<HallMeun> hallMeunList = hallMeunService.selectByDeleteFlgKey(Constant.DELETE_FLG, Constant.MEUN_URL_HALL);
+        modelAndView.addObject("hallMeun", hallMeunList);
+        return hallMeunList;
+    }
+
+    @GetMapping("meun_nong")
+    public List<HallMeun> meun_nong(ModelAndView modelAndView){
+        List<HallMeun> hallMeunList = hallMeunService.selectByDeleteFlgKey(Constant.DELETE_FLG, Constant.MEUN_URL_NONG);
+        modelAndView.addObject("hallMeun", hallMeunList);
+        return hallMeunList;
+    }
+
+    @GetMapping("meun_nongzi")
+    public List<HallMeun> meun_nongzi(ModelAndView modelAndView){
+        List<HallMeun> hallMeunList = hallMeunService.selectByDeleteFlgKey(Constant.DELETE_FLG, Constant.MEUN_URL_NONG_ZI);
+        modelAndView.addObject("hallMeun", hallMeunList);
+        return hallMeunList;
+    }
+
+    @GetMapping("meun_nongfu")
+    public List<HallMeun> meun_nongfu(ModelAndView modelAndView){
+        List<HallMeun> hallMeunList = hallMeunService.selectByDeleteFlgKey(Constant.DELETE_FLG, Constant.MEUN_URL_NONG_FU);
         modelAndView.addObject("hallMeun", hallMeunList);
         return hallMeunList;
     }

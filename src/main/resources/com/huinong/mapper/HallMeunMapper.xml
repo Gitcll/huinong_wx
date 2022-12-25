@@ -16,14 +16,19 @@
   <sql id="Blob_Column_List">
     meunimage
   </sql>
-  <select id="selectByDeleteFlgKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+  <select id="selectByDeleteFlgKey" resultMap="ResultMapWithBLOBs">
     select
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
     from hallmeun
     where
-    deleteflg = #{deleteflg,jdbcType=INTEGER}
+    <if test="deleteflg != null">
+      deleteflg = #{deleteflg,jdbcType=INTEGER}
+    </if>
+    <if test="meunurl != null"> and
+      meunurl = #{meunurl,jdbcType=VARCHAR}
+    </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
     select 

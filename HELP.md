@@ -39,3 +39,135 @@ fatal: unable to access 'https://github.com/Gitcll/huinong_wx.git/': OpenSSL SSL
 --https://zhuanlan.zhihu.com/p/273370216
 git config http.sslVerify "false"
 ```
+
+### 4.jacoco
+```properties
+#sonar-project.properties
+sonar.projectKey=huinong_wx_sonar
+sonar.projectName=huinong_wx_sonar_name
+sonar.projectVersion=1.3
+sonar.language=java
+#sonar.modules=huinong_wx
+sonar.sources=src/main/java
+sonar.java.binaries=target/classes
+sonar.sourceEncoding=UTF-8
+sonar.coverage.jacoco.xmlReportPaths=..
+```
+```xml
+    <dependencies>
+        <properties>
+            <java.version>11</java.version>
+            <jacoco.version>0.8.5</jacoco.version>
+        </properties>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-maven-plugin</artifactId>
+                <version>1.3.6</version>
+                <configuration>
+                    <configurationFile>${basedir}/src/main/resources/generatorConfig.xml</configurationFile>
+                    <overwrite>true</overwrite>
+                    <verbose>true</verbose>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>11</source>
+                    <target>11</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacoco.version}</version>
+                <configuration>
+                    <skip>true</skip>
+                    <destFile>${basedir}/target/coverage-reports/jacoco-unit.exec</destFile>
+                    <dataFile>${basedir}/target/coverage-reports/jacoco-unit.exec</dataFile>
+                    <output>file</output>
+                    <append>true</append>
+                    <excludes>
+                        <exclude>com/huinong/**</exclude>
+                    </excludes>
+
+                    <rules>
+                        <rule implementation="org.jacoco.maven.RuleConfiguration">
+                            <element>BUNDLE</element>
+                            <limits>　　
+                                <limit implementation="org.jacoco.report.check.Limit">
+                                    <counter>METHOD</counter>
+                                    <value>COVEREDRATIO</value>
+                                    <minimum>0.50</minimum>
+                                </limit>
+                                <limit implementation="org.jacoco.report.check.Limit">
+                                    <counter>BRANCH</counter>
+                                    <value>COVEREDRATIO</value>
+                                    <minimum>0.50</minimum>
+                                </limit>
+                                <limit implementation="org.jacoco.report.check.Limit">
+                                    <counter>CLASS</counter>
+                                    <value>MISSEDCOUNT</value>
+                                    <maximum>0</maximum>
+                                </limit>
+                            </limits>
+                        </rule>
+                    </rules>
+
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>jacoco-initialize</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                        <phase>test-compile</phase>
+                    </execution>
+
+                    <!--                    <execution>-->
+                    <!--                        <id>check</id>-->
+                    <!--                        <goals>-->
+                    <!--                            <goal>check</goal>-->
+                    <!--                        </goals>-->
+                    <!--                    </execution>-->
+
+                    <execution>
+                        <id>jacoco-site</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+    <profiles>
+        <profile>
+            <id>sonar</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <!--                <sonar.jdbc.url>jdbc:postgresql://localhost/sonar</sonar.jdbc.url>-->
+                <!--                <sonar.jdbc.driver>org.postgresql.Driver</sonar.jdbc.driver>-->
+                <!--                <sonar.jdbc.username>user</sonar.jdbc.username>-->
+                <!--                <sonar.jdbc.password>password</sonar.jdbc.password>-->
+                <sonar.host.url>http://localhost:9000</sonar.host.url>
+<!--                <sonar.login>admin</sonar.login>
+                <sonar.password>admin</sonar.password>-->
+                <sonar.login>9656c84090b2481db6ea97b6d14d87d546bff619</sonar.login>
+
+            </properties>
+        </profile>
+    </profiles>
+```
